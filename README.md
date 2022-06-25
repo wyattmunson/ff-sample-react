@@ -27,3 +27,15 @@ SDK keys are generated under the `Environments` tab in the Harness UI. Each key 
 npm i
 npm start
 ```
+
+## Custom Hooks
+
+> The `hooks` branch contains custom hook examples.
+
+The `useFeatureFlag()` hook is exposed in `/src/components/hooks/useFeatureFlag`.
+
+```js
+const sampleFlag = useFeatureFlag("sampleFlag", "defaultValue");
+```
+
+Sample usage can be seen in the FFContainer component.
