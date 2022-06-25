@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { initialize, Event } from "@harnessio/ff-javascript-client-sdk";
+import useFeatureFlag from "../hooks/useFeatureFlag";
 
 const FFContainer = ({ sdkKey, identifier, attributes }) => {
   const [featureFlags, setFeatureFlags] = useState({});
 
+  // Custom hook method:
+  const alphaFlag = useFeatureFlag("alphaFlag", false);
+
+  // Non-hook method:
   useEffect(() => {
+    console.log(sdkKey);
     console.log("length", sdkKey.length);
     console.log("running ff init");
     const cf = initialize(sdkKey, {
@@ -52,6 +58,12 @@ const FFContainer = ({ sdkKey, identifier, attributes }) => {
       </div>
       <br />
       <br />
+      <div className="card">
+        <div className="card-body">
+          <h5 className="card-title">Custom Hooks</h5>
+          <p>alphaFlag: {alphaFlag ? "TRUE" : "FALSE"}</p>
+        </div>
+      </div>
     </div>
   );
 };

@@ -15,8 +15,8 @@ function App() {
       <h1>Feature Flag React Sample</h1>
       <br />
       <FFContainer
-        sdkKey={config.SDK_KEY}
-        identifier={config.IDENTIFIER}
+        sdkKey={process.env.REACT_APP_HARNESS_FF_SDK_KEY}
+        identifier={process.env.REACT_APP_IDENTIFIER}
         attributes={config.ATTRIBUTES ? attributeList : {}}
       />
     </div>
