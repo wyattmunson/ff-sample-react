@@ -6,13 +6,14 @@ const FFContainer = ({ sdkKey, identifier, attributes }) => {
   const [featureFlags, setFeatureFlags] = useState({});
 
   // Custom hook method:
+  // Uses React Hook to get evaluation of single flag
+  // Second argument is default, fallback value
+  // There must be a corresponding flag in Harness with the same name
   const alphaFlag = useFeatureFlag("alphaFlag", false);
 
   // Non-hook method:
   useEffect(() => {
-    console.log(sdkKey);
-    console.log("length", sdkKey.length);
-    console.log("running ff init");
+    console.log("running ff init, FFContainer");
     const cf = initialize(sdkKey, {
       identifier: identifier,
       attributes: attributes,
@@ -39,7 +40,6 @@ const FFContainer = ({ sdkKey, identifier, attributes }) => {
     return () => {
       cf.close();
     };
-    // }
   }, [attributes, sdkKey, identifier]);
 
   return (

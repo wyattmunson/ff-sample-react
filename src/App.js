@@ -15,8 +15,15 @@ function App() {
       <h1>Feature Flag React Sample</h1>
       <br />
       <FFContainer
-        sdkKey={process.env.REACT_APP_HARNESS_FF_SDK_KEY}
-        identifier={process.env.REACT_APP_IDENTIFIER}
+        // SDK_KEY is a public key that points to an Environment
+        // In production this would be a build or environment variable
+        sdkKey={config.SDK_KEY}
+        // IDENTIFIER maps to a Target
+        // A Target can be an end-user, a machine, an IP address, ect.
+        identifier={config.IDENTIFIER}
+        // ATTRIBUTES are optional, additional information about a Target
+        // Attributes are a key-value pair of metadata
+        // Attributes can include, IP address, geo info, ect.
         attributes={config.ATTRIBUTES ? attributeList : {}}
       />
     </div>

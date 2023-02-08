@@ -4,24 +4,24 @@ Sample React app with Harness feature flags.
 
 ## Config
 
-Setup React app.
+### 1. Update `config.js`
 
-### Create `/.env` file for SDK key
+For this example, the `SDK_KEY` and `IDENTIFIER` are stored in `src/config.js`. The SDK key can be generated in the Harness UI and the Identifier can be any value you choose.
 
-Create an `.env` file at the root directy of this repo and add the code below, substituting the placeholder with the SDK key generated in the Harness UI.
+The `SDK_KEY` is a public key that points to a specific Environment within Harnes (e.g., `dev`) and the settings for all the flags within that environment.
 
-```bash
-# replace with personal Harness SDK key
-HARNESS_FF_SDK_KEY=000000-0000-0000-000000
-# end-user identifier
-REACT_APP_IDENTIFIER=Anonymous
-```
+- In a non-sample app the `SDK_KEY` would typically be supplied as a build or environment variable
+- `SDK_KEY` is generated in the `Environments` tab in the Harness UI.
+- There can be multiple SDK keys per environment. SDK keys can be public facing.
 
-The environment file mimics a production scenario where enviornment variables
+The `IDENTIFIER` uniquely identifies a Target within Harness.
 
-SDK keys are generated under the `Environments` tab in the Harness UI. Each key is specific to one and only one environment. Multiple keys can exist per environment.
+- A Target can be an end-user, a machine, an IP address, ect.
+- The Identifier can be populated using an email address, user's Id, a hashed user identifier, an IP address, ect.
 
-## Run locally
+### 2. Run locally
+
+After updating the values in `src/config.js`, use npm to start the app.
 
 ```bash
 npm i
@@ -30,12 +30,18 @@ npm start
 
 ## Custom Hooks
 
-> The `hooks` branch contains custom hook examples.
+This uses two SDK clients for example purposes:
 
-The `useFeatureFlag()` hook is exposed in `/src/components/hooks/useFeatureFlag`.
+- One directly in the `FFContainer` component (`src/components/ffContainer/FFContainer.js`)
+- A React Hook example that return the evaluation of a single flag (`src/components/hooks/useFeatureFlag.js`)
+
+Consuming hook:
 
 ```js
 const sampleFlag = useFeatureFlag("sampleFlag", "defaultValue");
 ```
 
-Sample usage can be seen in the FFContainer component.
+The `useFeatureFlag()` hook takes two arguments:
+
+1. The name of feature flag in Harness (the corresponding flag must be created in Harness)
+2. The default, fallback value
