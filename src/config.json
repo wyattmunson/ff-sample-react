@@ -1,5 +1,5 @@
 {
-  "IDENTIFIER": "Anonymous",
-  "SDK_KEY": "f3f7a124-56f5-4da0-a353-3359965fda6c",
+  "IDENTIFIER": "gregbenish@example.com",
+  "SDK_KEY": "=== Update SDK Key in src/config.json ===",
   "ATTRIBUTES": true
 }
